@@ -5,33 +5,37 @@ class CreditCardsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _buildTitleSection(
-                title: "Payment Details",
-                subTitle: "How would you like to pay ?"),
-            _buildCreditCard(
-                color: const Color(0xFF090943),
-                cardExpiration: "08/2022",
-                cardHolder: "HOUSSEM SELMI",
-                cardNumber: "3546 7532 XXXX 9742"),
-            const SizedBox(
-              height: 15,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildTitleSection(
+                    title: "Payment Details",
+                    subTitle: "How would you like to pay ?"),
+                _buildCreditCard(
+                    color: const Color(0xFF090943),
+                    cardExpiration: "08/2022",
+                    cardHolder: "HOUSSEM SELMI",
+                    cardNumber: "3546 7532 XXXX 9742"),
+                const SizedBox(
+                  height: 15,
+                ),
+                _buildCreditCard(
+                    color: const Color(0xFF000000),
+                    cardExpiration: "05/2024",
+                    cardHolder: "HOUSSEM SELMI",
+                    cardNumber: "9874 4785 XXXX 6548"),
+                _buildAddCardButton(
+                  icon: const Icon(Icons.add),
+                  color: const Color(0xFF081603),
+                )
+              ],
             ),
-            _buildCreditCard(
-                color: const Color(0xFF000000),
-                cardExpiration: "05/2024",
-                cardHolder: "HOUSSEM SELMI",
-                cardNumber: "9874 4785 XXXX 6548"),
-            _buildAddCardButton(
-              icon: const Icon(Icons.add),
-              color: const Color(0xFF081603),
-            )
-          ],
+          ),
         ),
       ),
     );
