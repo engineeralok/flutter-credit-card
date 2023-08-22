@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CreditCardsPage extends StatelessWidget {
+  const CreditCardsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -13,21 +15,21 @@ class CreditCardsPage extends StatelessWidget {
                 title: "Payment Details",
                 subTitle: "How would you like to pay ?"),
             _buildCreditCard(
-                color: Color(0xFF090943),
+                color: const Color(0xFF090943),
                 cardExpiration: "08/2022",
                 cardHolder: "HOUSSEM SELMI",
                 cardNumber: "3546 7532 XXXX 9742"),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             _buildCreditCard(
-                color: Color(0xFF000000),
+                color: const Color(0xFF000000),
                 cardExpiration: "05/2024",
                 cardHolder: "HOUSSEM SELMI",
                 cardNumber: "9874 4785 XXXX 6548"),
             _buildAddCardButton(
-              icon: Icon(Icons.add),
-              color: Color(0xFF081603),
+              icon: const Icon(Icons.add),
+              color: const Color(0xFF081603),
             )
           ],
         ),
@@ -44,14 +46,14 @@ class CreditCardsPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8.0, top: 16.0),
           child: Text(
             '$title',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0, bottom: 16.0),
           child: Text(
             '$subTitle',
-            style: TextStyle(fontSize: 21, color: Colors.black45),
+            style: const TextStyle(fontSize: 21, color: Colors.black45),
           ),
         )
       ],
@@ -60,10 +62,10 @@ class CreditCardsPage extends StatelessWidget {
 
   // Build the credit card widget
   Card _buildCreditCard(
-      {@required Color color,
-      @required String cardNumber,
-      @required String cardHolder,
-      @required String cardExpiration}) {
+      {required Color color,
+      required String cardNumber,
+      required String cardHolder,
+      required String cardExpiration}) {
     return Card(
       elevation: 4.0,
       color: color,
@@ -81,8 +83,8 @@ class CreditCardsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text(
-                '$cardNumber',
-                style: TextStyle(
+                cardNumber,
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 21,
                     fontFamily: 'CourrierPrime'),
@@ -124,18 +126,18 @@ class CreditCardsPage extends StatelessWidget {
   }
 
 // Build Column containing the cardholder and expiration information
-  Column _buildDetailsBlock({@required String label, @required String value}) {
+  Column _buildDetailsBlock({required String label, required String value}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          '$label',
-          style: TextStyle(
+          label,
+          style: const TextStyle(
               color: Colors.grey, fontSize: 9, fontWeight: FontWeight.bold),
         ),
         Text(
-          '$value',
-          style: TextStyle(
+          value,
+          style: const TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
         )
       ],
@@ -144,8 +146,8 @@ class CreditCardsPage extends StatelessWidget {
 
 // Build the FloatingActionButton
   Container _buildAddCardButton({
-    @required Icon icon,
-    @required Color color,
+    required Icon icon,
+    required Color color,
   }) {
     return Container(
       margin: const EdgeInsets.only(top: 24.0),
