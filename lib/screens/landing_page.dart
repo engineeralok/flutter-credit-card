@@ -1,8 +1,10 @@
-import 'package:credit_card_project/ui_view/slider_layout_view.dart';
+import 'package:credit_card_project/screens/onBoardingSlider/slider_layout_view.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
+
+  static const String routeName = "/";
   @override
   State<StatefulWidget> createState() => _LandingPageState();
 }

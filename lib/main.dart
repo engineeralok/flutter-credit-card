@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:credit_card_project/routes/app_routes.dart';
+import 'package:credit_card_project/theme/theme.dart';
 import 'package:credit_card_project/utils/innitial_bindings.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     return GetMaterialApp(
-      theme: ThemeData(fontFamily: 'Lato'),
+      debugShowCheckedModeBanner: false,
+      theme: appTheme(),
       getPages: AppRoutes.routes(),
     );
 

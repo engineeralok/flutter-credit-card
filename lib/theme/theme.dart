@@ -24,3 +24,25 @@ TextStyle regular16pt = const TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
+
+ThemeData appTheme() {
+  return ThemeData(
+    brightness: Brightness.light,
+    primarySwatch: Colors.lightBlue,
+    primaryColor: const Color(0xFF3F0E40), // Slack's purple color
+    fontFamily: 'Lato',
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      color: Colors.white, // White app bar background
+      elevation: 0, // No shadow
+      iconTheme: IconThemeData(
+        color: Color(0xFF333333), // Dark gray app bar icons
+      ),
+      titleTextStyle: TextStyle(
+        color: Color(0xFF333333), // Dark gray app bar text
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
+}

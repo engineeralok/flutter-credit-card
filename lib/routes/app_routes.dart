@@ -1,7 +1,8 @@
 import 'package:credit_card_project/screens/auth/login_screen.dart';
 import 'package:credit_card_project/screens/credit_cards_page.dart';
 import 'package:credit_card_project/screens/landing_page.dart';
-import 'package:credit_card_project/ui_view/slider_layout_view.dart';
+import 'package:credit_card_project/screens/onBoardingSlider/slider_layout_view.dart';
+import 'package:credit_card_project/screens/stacked_credit_card.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
@@ -12,6 +13,10 @@ class AppRoutes {
         GetPage(
           name: "/home",
           page: () => const CreditCardsPage(),
+        ),
+        GetPage(
+          name: "/stackedCreditCard",
+          page: () => const StackedCreditCard(),
         ),
       ];
 }

@@ -3,38 +3,81 @@ import 'package:flutter/material.dart';
 class CreditCardsPage extends StatelessWidget {
   const CreditCardsPage({super.key});
 
+  static const String routeName = "/home";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildTitleSection(
-                    title: "Payment Details",
-                    subTitle: "How would you like to pay ?"),
-                _buildCreditCard(
-                    color: const Color(0xFF090943),
-                    cardExpiration: "08/2022",
-                    cardHolder: "HOUSSEM SELMI",
-                    cardNumber: "3546 7532 XXXX 9742"),
-                const SizedBox(
-                  height: 15,
-                ),
-                _buildCreditCard(
-                    color: const Color(0xFF000000),
-                    cardExpiration: "05/2024",
-                    cardHolder: "HOUSSEM SELMI",
-                    cardNumber: "9874 4785 XXXX 6548"),
-                _buildAddCardButton(
-                  icon: const Icon(Icons.add),
-                  color: const Color(0xFF081603),
+          child: Expanded(
+            child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                
+                  children: [
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: SizedBox(
+                          // padding: EdgeInsets.symmetric(horizontal: 20),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: _buildCreditCard(
+                            color: const Color(0xFF090943),
+                            cardExpiration: "08/2022",
+                            cardHolder: "HOUSSEM SELMI",
+                            cardNumber: "3546 7532 XXXX 9742",
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 30,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: SizedBox(
+                          // padding: EdgeInsets.symmetric(horizontal: 20),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: _buildCreditCard(
+                              color: const Color(0xFF090943),
+                              cardExpiration: "08/2022",
+                              cardHolder: "HOUSSEM SELMI",
+                              cardNumber: "3546 7532 XXXX 9742"),
+                        ),
+                      ),
+                    ),
+                  ],
                 )
-              ],
-            ),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: <Widget>[
+                //     _buildTitleSection(
+                //         title: "Payment Details",
+                //         subTitle: "How would you like to pay ?"),
+                //     _buildCreditCard(
+                //         color: const Color(0xFF090943),
+                //         cardExpiration: "08/2022",
+                //         cardHolder: "HOUSSEM SELMI",
+                //         cardNumber: "3546 7532 XXXX 9742"),
+                //     const SizedBox(
+                //       height: 15,
+                //     ),
+                // _buildCreditCard(
+                //     color: const Color(0xFF000000),
+                //     cardExpiration: "05/2024",
+                //     cardHolder: "HOUSSEM SELMI",
+                //     cardNumber: "9874 4785 XXXX 6548"),
+                // _buildAddCardButton(
+                //   icon: const Icon(Icons.add),
+                //   color: const Color(0xFF081603),
+                // )
+                // ],
+                ),
           ),
         ),
       ),
@@ -42,7 +85,7 @@ class CreditCardsPage extends StatelessWidget {
   }
 
   // Build the title section
-  Column _buildTitleSection({@required title, @required subTitle}) {
+  Column _buildTitleSection({required title, required subTitle}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

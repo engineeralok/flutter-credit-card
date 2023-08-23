@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:credit_card_project/model/user_model.dart';
 import 'package:credit_card_project/screens/credit_cards_page.dart';
+import 'package:credit_card_project/screens/stacked_credit_card.dart';
 import 'package:credit_card_project/utils/api_endpoints.dart';
+import 'package:credit_card_project/utils/app_prefs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,9 +48,13 @@ class RegistrationController extends GetxController {
         final token = json['tokens']["access"]["token"];
         print(token);
 
-        final SharedPreferences prefs = await _prefs;
+        // final SharedPreferences prefs = await _prefs;
 
-        await prefs.setString('token', token);
+        // await prefs.setString('token', token);
+        // AppPref().saveUser(json);
+        final UserModel userModel = UserModel.fromJson(json);
+
+        await AppPref().saveUser(userModel);
 
         clearTextEditingController();
         //goto home
@@ -57,12 +64,13 @@ class RegistrationController extends GetxController {
             // title: "Hello",
             message: 'You have registered successfully!',
             icon: Icon(CupertinoIcons.check_mark),
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.blueAccent,
             duration: Duration(seconds: 3),
           ),
         );
 
-        Get.offAll(const CreditCardsPage());
+        // Get.offAll(const CreditCardsPage());
+        Get.offAll(const StackedCreditCard());
       } else {
         throw jsonDecode(response.body)["message"] ?? "Unknown error";
       }
