@@ -1,10 +1,16 @@
 import 'dart:io';
 
-import 'package:credit_card_project/screens/landing_page.dart';
+import 'package:credit_card_project/routes/app_routes.dart';
+import 'package:credit_card_project/utils/innitial_bindings.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  InitialBindings().dependencies();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,14 +26,19 @@ class MyApp extends StatelessWidget {
       systemNavigationBarDividerColor: Colors.grey,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    return MaterialApp(
-      title: 'Credit Cards Project',
+    return GetMaterialApp(
       theme: ThemeData(fontFamily: 'Lato'),
-      debugShowCheckedModeBanner: false,
-      home: const LandingPage(),
-      // const Scaffold(
-      //   body: SafeArea(child: CreditCardsPage()),
-      // ),
+      getPages: AppRoutes.routes(),
     );
+
+    // MaterialApp(
+    //   title: 'Credit Cards Project',
+    //   theme: ThemeData(fontFamily: 'Lato'),
+    //   debugShowCheckedModeBanner: false,
+    //   home: const LandingPage(),
+    //   // const Scaffold(
+    //   //   body: SafeArea(child: CreditCardsPage()),
+    //   // ),
+    // );
   }
 }

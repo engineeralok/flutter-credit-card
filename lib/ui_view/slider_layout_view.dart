@@ -1,6 +1,6 @@
 import 'package:credit_card_project/constants/constants.dart';
 import 'package:credit_card_project/model/slider.dart';
-import 'package:credit_card_project/screens/login/login_screen.dart';
+import 'package:credit_card_project/screens/auth/login_screen.dart';
 import 'package:credit_card_project/widgets/slide_dots.dart';
 import 'package:credit_card_project/widgets/slide_items/slide_item.dart';
 import 'package:flutter/material.dart';
