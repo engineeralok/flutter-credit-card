@@ -142,10 +142,11 @@ class RegisterScreen extends GetView<RegistrationController> {
                 height: 32,
               ),
               CustomPrimaryButton(
+                controller: controller,
                 buttonColor: primaryBlue,
                 textValue: 'Register',
                 textColor: Colors.white,
-                onPressed: () {
+                onPressed: () async {
                   if (controller.isChecked.value) {
                     controller.regiterWithEmail();
                   } else {
@@ -174,9 +175,11 @@ class RegisterScreen extends GetView<RegistrationController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(
-                        context,
-                      );
+                      // Navigator.pop(
+                      //   context,
+                      // );
+
+                      Get.back();
                     },
                     child: Text(
                       'Login',

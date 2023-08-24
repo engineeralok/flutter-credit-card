@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Constants {
   static const String poppins = "Poppins";
   static const String openSans = "OpenSans";
@@ -12,4 +14,7 @@ class Constants {
       "Simplifying Tasks for Effortless Efficiency.";
   static const String sliderDesc3 =
       "Nurturing Your Wealth, Securing Your Future.";
+  static const Color primaryColor = Color(0xFF7B61FF);
+
+  static const double defaultPadding = 16.0;
 }

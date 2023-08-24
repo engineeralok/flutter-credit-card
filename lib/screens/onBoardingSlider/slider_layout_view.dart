@@ -74,8 +74,8 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
                       curve: Curves.ease,
                     );
                   } else if (isLoggedIn) {
-                    // Get.offAllNamed(CreditCardsPage.routeName);
-                    Get.offAllNamed(StackedCreditCard.routeName);
+                    Get.offAllNamed(CreditCardsPage.routeName);
+                    // Get.offAllNamed(StackedCreditCard.routeName);
                   } else {
                     Navigator.push(
                       context,
@@ -102,8 +102,8 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
               child: TextButton(
                 onPressed: () {
                   if (isLoggedIn) {
-                    // Get.offAllNamed(CreditCardsPage.routeName);
-                    Get.offAllNamed(StackedCreditCard.routeName);
+                    Get.offAllNamed(CreditCardsPage.routeName);
+                    // Get.offAllNamed(StackedCreditCard.routeName);
                   } else {
                     Navigator.push(
                       context,

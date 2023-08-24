@@ -1,3 +1,4 @@
+import 'package:credit_card_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 Color primaryBlue = const Color(0xff2972ff);
@@ -44,5 +45,38 @@ ThemeData appTheme() {
         fontWeight: FontWeight.bold,
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      filled: true,
+      fillColor: Color(0xFFF8F8F9),
+      hintStyle: TextStyle(
+        color: Color(0xFFB8B5C3),
+      ),
+      border: defaultOutlineInputBorder,
+      enabledBorder: defaultOutlineInputBorder,
+      focusedBorder: defaultOutlineInputBorder,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Constants.primaryColor,
+        minimumSize: const Size(double.infinity, 56),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.black,
+        minimumSize: const Size(double.infinity, 56),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+      ),
+    ),
   );
 }
+
+const OutlineInputBorder defaultOutlineInputBorder = OutlineInputBorder(
+  borderSide: BorderSide.none,
+  borderRadius: BorderRadius.all(Radius.circular(12)),
+);

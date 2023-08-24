@@ -16,6 +16,7 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   var isPasswordHidden = true.obs;
+  var isLoading = false.obs;
 
   clearTextEditingController() {
     emailController.clear();
@@ -25,6 +26,7 @@ class LoginController extends GetxController {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> loginWithEmail() async {
+    isLoading.value = true;
     var headers = {'Content-Type': 'application/json'};
 
     try {
@@ -51,6 +53,7 @@ class LoginController extends GetxController {
         final UserModel userModel = UserModel.fromJson(json);
 
         await AppPref().saveUser(userModel);
+        await AppPref().saveDummyCreditCards();
 
         clearTextEditingController();
         //go to home
@@ -64,21 +67,39 @@ class LoginController extends GetxController {
             duration: Duration(seconds: 3),
           ),
         );
-        Get.offAll(const StackedCreditCard());
+        Get.offAll( CreditCardsPage());
+        isLoading.value = false;
       } else {
+        isLoading.value = false;
         throw jsonDecode(response.body)["message"];
       }
+
+      isLoading.value = false;
     } catch (e) {
-      Get.back();
-      showDialog(
-        context: Get.context!,
-        builder: (context) {
-          return SimpleDialog(
-            title: const Text("Error"),
-            contentPadding: const EdgeInsets.all(20),
-            children: [Text(e.toString())],
-          );
-        },
+      // Get.back();
+      // showDialog(
+      //   context: Get.context!,
+      //   builder: (context) {
+      //     return SimpleDialog(
+      //       title: const Text("Error"),
+      //       contentPadding: const EdgeInsets.all(20),
+      //       children: [Text(e.toString())],
+      //     );
+      //   },
+      // );
+      Get.dialog(
+        AlertDialog(
+          title: const Text('Error'),
+          content: Text(e.toString()),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.back(); // Close the error dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
       );
     }
   }

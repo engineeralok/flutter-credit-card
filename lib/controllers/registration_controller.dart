@@ -24,10 +24,12 @@ class RegistrationController extends GetxController {
 
   var isPasswordHidden = true.obs;
   var isChecked = false.obs;
+  var isLoading = false.obs;
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> regiterWithEmail() async {
+    isLoading.value = true;
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(
@@ -55,6 +57,7 @@ class RegistrationController extends GetxController {
         final UserModel userModel = UserModel.fromJson(json);
 
         await AppPref().saveUser(userModel);
+        await AppPref().saveDummyCreditCards();
 
         clearTextEditingController();
         //goto home
@@ -69,21 +72,39 @@ class RegistrationController extends GetxController {
           ),
         );
 
-        // Get.offAll(const CreditCardsPage());
-        Get.offAll(const StackedCreditCard());
+        Get.offAll( CreditCardsPage());
+        // Get.offAll(const StackedCreditCard());
+        isLoading.value = false;
       } else {
+        isLoading.value = false;
         throw jsonDecode(response.body)["message"] ?? "Unknown error";
       }
+
+      isLoading.value = false;
     } catch (e) {
-      showDialog(
-        context: Get.context!,
-        builder: (context) {
-          return SimpleDialog(
-            title: const Text('Error'),
-            contentPadding: const EdgeInsets.all(20),
-            children: [Text(e.toString())],
-          );
-        },
+      // showDialog(
+      //   context: Get.context!,
+      //   builder: (context) {
+      //     return SimpleDialog(
+      //       title: const Text('Error'),
+      //       contentPadding: const EdgeInsets.all(20),
+      //       children: [Text(e.toString())],
+      //     );
+      //   },
+      // );
+      Get.dialog(
+        AlertDialog(
+          title: const Text('Error'),
+          content: Text(e.toString()),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.back(); // Close the error dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
       );
     }
   }

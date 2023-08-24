@@ -1,7 +1,9 @@
-// import 'package:credit_card_project/widgets/style_card.dart';
-import 'package:credit_card_project/routes/app_routes.dart';
+import 'package:credit_card_project/constants/constants.dart';
+import 'package:credit_card_project/controllers/fetch_credit_cards_controller.dart';
+import 'package:credit_card_project/screens/credit_cards_page.dart';
 import 'package:credit_card_project/screens/landing_page.dart';
-import 'package:credit_card_project/screens/onBoardingSlider/slider_layout_view.dart';
+import 'package:credit_card_project/screens/new_card/add_new_card.dart';
+import 'package:credit_card_project/service/credit_card_data_manager.dart';
 import 'package:credit_card_project/utils/app_prefs.dart';
 import 'package:credit_card_project/widgets/floating_button.dart';
 import 'package:credit_card_project/widgets/style_cards.dart';
@@ -20,57 +22,66 @@ class StackedCreditCard extends StatefulWidget {
 }
 
 class _StackedCreditCardState extends State<StackedCreditCard> {
+  final controller = Get.put(FetchCreditCardsController());
   @override
   Widget build(BuildContext context) {
+    creditCardDataManager.fetchCreditCardData();
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text('Account'),
-          actions: [
-            Row(
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: [
+      //       ListTile(
+      //         title: const Text("Credit Card Home"),
+      //         onTap: () => Get.offAndToNamed(CreditCardsPage.routeName),
+      //       )
+      //     ],
+      //   ),
+      // ),
+      appBar: AppBar(
+        // automaticallyImplyLeading: false,
+        title: const Text('Account'),
+        actions: [
+          InkWell(
+            onTap: () {
+              AppPref().signOut();
+              Get.offAllNamed(LandingPage.routeName);
+              Get.showSnackbar(
+                const GetSnackBar(
+                  // title: "Hello",
+                  message: 'You have logged out successfully!',
+                  icon: Icon(CupertinoIcons.check_mark),
+                  backgroundColor: Colors.blueAccent,
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            },
+            child: const Row(
               children: [
-                const Text("Log Out"),
-                IconButton(
-                    onPressed: () {
-                      AppPref().signOut();
-                      Get.offAllNamed(LandingPage.routeName);
-                      Get.showSnackbar(
-                        const GetSnackBar(
-                          // title: "Hello",
-                          message: 'You have logged out successfully!',
-                          icon: Icon(CupertinoIcons.check_mark),
-                          backgroundColor: Colors.blueAccent,
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.exit_to_app)),
+                Text("Log Out"),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.exit_to_app),
+                ),
               ],
-            )
-          ],
+            ),
+          )
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: StackedCardCarousel(
+          initialOffset: 40,
+          spaceBetweenItems: 250,
+          applyTextScaleFactor: false,
+          type: StackedCardCarouselType.cardsStack,
+          items: buildStyleCards(context, controller.cards),
         ),
-        body:
-            // Stack(
-            //   children: styleCards.map((card) {
-            //     return SizedBox(
-            //       child: card,
-            //     );
-            //   }).toList(),
-            // ),
-            Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: StackedCardCarousel(
-            initialOffset: 40,
-            spaceBetweenItems: 250,
-            applyTextScaleFactor: false,
-            type: StackedCardCarouselType.cardsStack,
-            items: styleCards,
-          ),
-        ),
-        floatingActionButton: addCardButtonFloatingButton(
-          icon: const Icon(Icons.add),
-          color: Colors.orangeAccent,
-          onPressed: () {},
-        ));
+      ),
+      floatingActionButton: addCardButtonFloatingButton(
+        icon: const Icon(Icons.add),
+        color: Constants.primaryColor,
+        onPressed: () => Get.toNamed(AddNewCardScreen.rounteName),
+      ),
+    );
   }
 }

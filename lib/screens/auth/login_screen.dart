@@ -5,6 +5,7 @@ import 'package:credit_card_project/widgets/input_field.dart';
 import 'package:credit_card_project/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
 
@@ -80,12 +81,14 @@ class LoginScreen extends GetView<LoginController> {
               height: 32,
             ),
             CustomPrimaryButton(
+               controller: controller,
                 buttonColor: primaryBlue,
                 textValue: 'Login',
                 textColor: Colors.white,
-                onPressed: () {
+                onPressed: () async{
                   controller.loginWithEmail();
                 }),
+                 
             // const SizedBox(
             //   height: 24,
             // ),
@@ -116,10 +119,11 @@ class LoginScreen extends GetView<LoginController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const RegisterScreen()));
+                    Get.toNamed(RegisterScreen.routeName);
                   },
                   child: Text(
                     'Register',
